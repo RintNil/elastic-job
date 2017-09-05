@@ -124,6 +124,8 @@ public abstract class AbstractElasticJobExecutor {
             jobFacade.clearMisfire(shardingContexts.getShardingItemParameters().keySet());
             execute(shardingContexts, JobExecutionEvent.ExecutionSource.MISFIRE);
         }
+        //failover 应该说 空闲机器从 failover\items\分片项 中取第一个在 对应的 sharding\failover
+        //写入当前节点的 IP的标识信息
         jobFacade.failoverIfNecessary();
         try {
             jobFacade.afterJobExecuted(shardingContexts);

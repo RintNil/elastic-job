@@ -183,6 +183,8 @@ public final class JobNodeStorage {
      * @param latchNode 分布式锁使用的作业节点名称
      * @param callback 执行操作的回调
      */
+    //try () catch 会自动调用 latch.close() 其他节点可以继续参加选举
+    //LeaderLatch 进行的master选举不手动close将会一直占着master节点其他机器进行等待
     public void executeInLeader(final String latchNode, final LeaderExecutionCallback callback) {
         try (LeaderLatch latch = new LeaderLatch(getClient(), jobNodePath.getFullPath(latchNode))) {
             latch.start();

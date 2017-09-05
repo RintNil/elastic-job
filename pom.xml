@@ -12,6 +12,8 @@
         <module>elastic-job-common</module>
         <module>elastic-job-lite</module>
         <module>elastic-job-cloud</module>
+        <!--打包去除example-->
+        <module>elastic-job-example</module>
     </modules>
     
     <properties>
